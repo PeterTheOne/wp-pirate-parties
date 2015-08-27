@@ -22,6 +22,14 @@ class Wp_Pirate_Parties extends WP_Widget
         'country' => 'Country'
     );
 
+    private $linkOptions = array(
+        'website' => 'Website',
+        'facebook' => 'Facebook',
+        'twitter' => 'Twitter',
+        'googlePlus' => 'Google+',
+        'youtube' => 'Youtube'
+    );
+
     function Wp_Pirate_Parties() {
         parent::WP_Widget(false, $name = __('Wp Pirate Parties', 'Wp_Pirate_Parties') );
     }
@@ -29,11 +37,13 @@ class Wp_Pirate_Parties extends WP_Widget
     function form($instance) {
         $title = '';
         $text = '';
-        $display = '';
+        $displayOption = '';
+        $linkOption = '';
         if($instance) {
             $title = esc_attr($instance['title']);
             $text = esc_attr($instance['text']);
-            $display = esc_attr($instance['display']);
+            $displayOption = esc_attr($instance['displayOption']);
+            $linkOption = esc_attr($instance['linkOption']);
         }
         ?>
         <p>
@@ -47,11 +57,22 @@ class Wp_Pirate_Parties extends WP_Widget
         </p>
 
         <p>
-            <label for="<?php echo $this->get_field_id('display'); ?>"><?php _e('Select', 'wp_widget_plugin'); ?></label>
-            <select name="<?php echo $this->get_field_name('display'); ?>" id="<?php echo $this->get_field_id('display'); ?>" class="widefat">
+            <label for="<?php echo $this->get_field_id('displayOption'); ?>"><?php _e('Party Text', 'wp_widget_plugin'); ?></label>
+            <select name="<?php echo $this->get_field_name('displayOption'); ?>" id="<?php echo $this->get_field_id('displayOption'); ?>" class="widefat">
                 <?php
                 foreach ($this->displayOptions as $key => $option) {
-                    echo '<option value="' . $key . '" ', $display == $key ? ' selected="selected"' : '', '>', $option, '</option>';
+                    echo '<option value="' . $key . '" ', $displayOption == $key ? ' selected="selected"' : '', '>', $option, '</option>';
+                }
+                ?>
+            </select>
+        </p>
+
+        <p>
+            <label for="<?php echo $this->get_field_id('linkOption'); ?>"><?php _e('Party Link', 'wp_widget_plugin'); ?></label>
+            <select name="<?php echo $this->get_field_name('linkOption'); ?>" id="<?php echo $this->get_field_id('linkOption'); ?>" class="widefat">
+                <?php
+                foreach ($this->linkOptions as $key => $option) {
+                    echo '<option value="' . $key . '" ', $linkOption == $key ? ' selected="selected"' : '', '>', $option, '</option>';
                 }
                 ?>
             </select>
@@ -63,7 +84,8 @@ class Wp_Pirate_Parties extends WP_Widget
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['text'] = strip_tags($new_instance['text']);
-        $instance['display'] = strip_tags($new_instance['display']);
+        $instance['displayOption'] = strip_tags($new_instance['displayOption']);
+        $instance['linkOption'] = strip_tags($new_instance['linkOption']);
         return $instance;
     }
 
@@ -79,10 +101,11 @@ class Wp_Pirate_Parties extends WP_Widget
         // these are the widget options
         $title = apply_filters('widget_title', $instance['title']);
         $text = $instance['text'];
-        $display = $instance['display'];
+        $displayOption = $instance['displayOption'];
+        $linkOption = $instance['linkOption'];
 
         echo $before_widget;
-        // Display the widget
+        // displayOption the widget
         echo '<div class="widget-text wp_widget_plugin_box">';
 
         // Check if title is set
@@ -97,9 +120,9 @@ class Wp_Pirate_Parties extends WP_Widget
 
         echo '<ul>';
         foreach ($parties as $party) {
-            $partyWebsite = $party->websites->official;
+            $partyLink = null;
             $partyText = null;
-            switch ($display) {
+            switch ($displayOption) {
                 case 'native':
                     $countryCode = $party->countryCode;
                     $partyText = $party->partyName->{$countryCode};
@@ -107,16 +130,38 @@ class Wp_Pirate_Parties extends WP_Widget
                 case 'country':
                     $partyText = $party->country;
                     break;
-                default:
+                case 'en': default:
                     $partyText = $party->partyName->en;
                     break;
             }
 
-            if (!$partyWebsite || !$partyText) {
+            switch ($linkOption) {
+                case 'facebook':
+                    $facebookId = $party->socialNetworks->facebook->id;
+                    $partyLink = $facebookId ? '//www.facebook.com/' . $facebookId : null;
+                    break;
+                case 'twitter':
+                    $twitterId = $party->socialNetworks->twitter->username;
+                    $partyLink = $twitterId ? '//twitter.com/' . $twitterId : null;
+                    break;
+                case 'googlePlus':
+                    $googleId = $party->socialNetworks->googlePlus;
+                    $partyLink = $googleId ? '//plus.google.com/u/0/' . $googleId : null;
+                    break;
+                case 'youtube':
+                    $youtubeId = $party->socialNetworks->youtube;
+                    $partyLink = $youtubeId ? '//www.youtube.com/user/' . $youtubeId : null;
+                    break;
+                case 'website': default:
+                    $partyLink = $party->websites->official;
+                    break;
+            }
+
+            if (!$partyLink || !$partyText) {
                 continue;
             }
             echo '<li>';
-            echo '<a href="' . $partyWebsite . '">' . $partyText . '</a>';
+            echo '<a href="' . $partyLink . '">' . $partyText . '</a>';
             echo '</li>';
         }
         echo '</ul>';
