@@ -106,21 +106,45 @@ class Wp_Pirate_Parties extends WP_Widget
     }
 
     function widget($args, $instance) {
-        $partiesContents = file_get_contents($this->apiUrl);
-        if (!$partiesContents) {
-            return;
-        }
-        $parties = json_decode($partiesContents);
-
         extract($args);
 
-        // these are the widget options
         $title = apply_filters('widget_title', $instance['title']);
         $text = $instance['text'];
         $displayOption = $instance['displayOption'];
         $linkOption = $instance['linkOption'];
         $ppiFilter = $instance['ppiFilter'];
         $ppeuFilter = $instance['ppeuFilter'];
+
+        $partiesContents = file_get_contents($this->apiUrl);
+        if (!$partiesContents) {
+            return;
+        }
+        $parties = json_decode($partiesContents);
+        if ($parties === null) {
+            return;
+        }
+        $parties = get_object_vars($parties);
+
+        // sort
+        switch ($displayOption) {
+            case 'native':
+                usort($parties, function($a, $b) {
+                    $countryCodeA = $a->countryCode;
+                    $countryCodeB = $b->countryCode;
+                    return strcmp($a->partyName->{$countryCodeA}, $b->partyName->{$countryCodeB});
+                });
+                break;
+            case 'country':
+                usort($parties, function($a, $b) {
+                    return strcmp($a->country, $b->country);
+                });
+                break;
+            case 'en': default:
+                usort($parties, function($a, $b) {
+                    return strcmp($a->partyName->en, $b->partyName->en);
+                });
+                break;
+        }
 
         echo $before_widget;
         // displayOption the widget
