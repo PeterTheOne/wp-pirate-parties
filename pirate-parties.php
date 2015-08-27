@@ -39,11 +39,15 @@ class Wp_Pirate_Parties extends WP_Widget
         $text = '';
         $displayOption = '';
         $linkOption = '';
+        $ppiFilter = '';
+        $ppeuFilter = '';
         if($instance) {
             $title = esc_attr($instance['title']);
             $text = esc_attr($instance['text']);
             $displayOption = esc_attr($instance['displayOption']);
             $linkOption = esc_attr($instance['linkOption']);
+            $ppiFilter = esc_attr($instance['ppiFilter']);
+            $ppeuFilter = esc_attr($instance['ppeuFilter']);
         }
         ?>
         <p>
@@ -77,6 +81,16 @@ class Wp_Pirate_Parties extends WP_Widget
                 ?>
             </select>
         </p>
+
+        <p>
+            <input id="<?php echo $this->get_field_id('ppiFilter'); ?>" name="<?php echo $this->get_field_name('ppiFilter'); ?>" type="checkbox" value="1" <?php checked( '1', $ppiFilter ); ?> />
+            <label for="<?php echo $this->get_field_id('ppiFilter'); ?>"><?php _e('Filter for PPI', 'wp_widget_plugin'); ?></label>
+        </p>
+
+        <p>
+            <input id="<?php echo $this->get_field_id('ppeuFilter'); ?>" name="<?php echo $this->get_field_name('ppeuFilter'); ?>" type="checkbox" value="1" <?php checked( '1', $ppeuFilter ); ?> />
+            <label for="<?php echo $this->get_field_id('ppeuFilter'); ?>"><?php _e('Filter for PPEU', 'wp_widget_plugin'); ?></label>
+        </p>
         <?php
     }
 
@@ -86,6 +100,8 @@ class Wp_Pirate_Parties extends WP_Widget
         $instance['text'] = strip_tags($new_instance['text']);
         $instance['displayOption'] = strip_tags($new_instance['displayOption']);
         $instance['linkOption'] = strip_tags($new_instance['linkOption']);
+        $instance['ppiFilter'] = strip_tags($new_instance['ppiFilter']);
+        $instance['ppeuFilter'] = strip_tags($new_instance['ppeuFilter']);
         return $instance;
     }
 
@@ -103,6 +119,8 @@ class Wp_Pirate_Parties extends WP_Widget
         $text = $instance['text'];
         $displayOption = $instance['displayOption'];
         $linkOption = $instance['linkOption'];
+        $ppiFilter = $instance['ppiFilter'];
+        $ppeuFilter = $instance['ppeuFilter'];
 
         echo $before_widget;
         // displayOption the widget
@@ -158,6 +176,12 @@ class Wp_Pirate_Parties extends WP_Widget
             }
 
             if (!$partyLink || !$partyText) {
+                continue;
+            }
+            if ($ppiFilter === '1' && !$party->membership->ppi) {
+                continue;
+            }
+            if ($ppeuFilter === '1' && !$party->membership->ppeu) {
                 continue;
             }
             echo '<li>';
