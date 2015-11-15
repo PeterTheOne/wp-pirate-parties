@@ -12,6 +12,9 @@
 	License URI: http://opensource.org/licenses/MIT
 */
 
+/**
+ * Class Wp_Pirate_Parties
+ */
 class Wp_Pirate_Parties extends WP_Widget
 {
     private $apiUrl = 'http://api.piratetimes.net/api/v1/parties/';
@@ -31,9 +34,13 @@ class Wp_Pirate_Parties extends WP_Widget
     );
 
     function Wp_Pirate_Parties() {
-        parent::WP_Widget(false, $name = __('Wp Pirate Parties', 'Wp_Pirate_Parties') );
+        parent::WP_Widget(false, $name = __('Wp Pirate Parties', 'Wp_Pirate_Parties'));
     }
 
+    /**
+     * @param array $instance
+     * @return bool
+     */
     function form($instance) {
         $title = '';
         $text = '';
@@ -92,8 +99,14 @@ class Wp_Pirate_Parties extends WP_Widget
             <label for="<?php echo $this->get_field_id('ppeuFilter'); ?>"><?php _e('Filter for PPEU', 'wp_widget_plugin'); ?></label>
         </p>
         <?php
+        return true;
     }
 
+    /**
+     * @param array $new_instance
+     * @param array $old_instance
+     * @return array
+     */
     function update($new_instance, $old_instance) {
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
@@ -105,7 +118,17 @@ class Wp_Pirate_Parties extends WP_Widget
         return $instance;
     }
 
+    /**
+     * @param array $args
+     * @param array $instance
+     */
     function widget($args, $instance) {
+        /**
+         * @var $before_title
+         * @var $after_title
+         * @var $before_widget
+         * @var $after_widget
+         */
         extract($args);
 
         $title = apply_filters('widget_title', $instance['title']);
@@ -221,4 +244,6 @@ class Wp_Pirate_Parties extends WP_Widget
 }
 
 // register widget
-add_action('widgets_init', create_function('', 'return register_widget("Wp_Pirate_Parties");'));
+add_action('widgets_init', function() {
+    register_widget('Wp_Pirate_Parties');
+});
