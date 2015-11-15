@@ -138,11 +138,11 @@ class Wp_Pirate_Parties extends WP_Widget
         $ppiFilter = $instance['ppiFilter'];
         $ppeuFilter = $instance['ppeuFilter'];
 
-        $partiesContents = file_get_contents($this->apiUrl);
-        if (!$partiesContents) {
+        $response = wp_remote_get($this->apiUrl);
+        if (!is_array($response) || !isset($response['body'])) {
             return;
         }
-        $parties = json_decode($partiesContents);
+        $parties = json_decode($response['body']);
         if ($parties === null) {
             return;
         }
