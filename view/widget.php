@@ -24,45 +24,61 @@ foreach ($parties as $party) {
     $partyText = null;
     switch ($displayOption) {
         case 'native':
-            $countryCode = $party->countryCode;
-            $partyText = $party->partyName->{$countryCode};
+            $country_code = strtolower($party->country_code);
+            if (isset($party->name->{$country_code})) {
+                $partyText = $party->name->{$country_code};
+            }
+            $partyText = $party->name->en;
             break;
         case 'country':
-            $partyText = $party->country;
+            $partyText = $party->country_name;
             break;
         case 'en': default:
-            $partyText = $party->partyName->en;
+            $partyText = $party->name->en;
             break;
+    }
+
+    if ($linkOption === 'no') {
+        echo '<li>'. $partyText . '</li>';
+        continue;
     }
 
     switch ($linkOption) {
         case 'facebook':
-            $facebookId = $party->socialNetworks->facebook->id;
-            $partyLink = $facebookId ? '//www.facebook.com/' . $facebookId : null;
+            if (isset($party->social_networks->facebook->id)) {
+                $facebookId = $party->social_networks->facebook->id;
+                $partyLink = $facebookId ? '//www.facebook.com/' . $facebookId : null;
+            }
             break;
         case 'twitter':
-            $twitterId = $party->socialNetworks->twitter->username;
-            $partyLink = $twitterId ? '//twitter.com/' . $twitterId : null;
+            if (isset($party->social_networks->twitter->username)) {
+                $twitterId = $party->social_networks->twitter->username;
+                $partyLink = $twitterId ? '//twitter.com/' . $twitterId : null;
+            }
             break;
         case 'googlePlus':
-            $googleId = $party->socialNetworks->googlePlus;
-            $partyLink = $googleId ? '//plus.google.com/u/0/' . $googleId : null;
+            if (isset($party->social_networks->googlePlus)) {
+                $googleId = $party->social_networks->googlePlus;
+                $partyLink = $googleId ? '//plus.google.com/u/0/' . $googleId : null;
+            }
             break;
         case 'youtube':
-            $youtubeId = $party->socialNetworks->youtube;
-            $partyLink = $youtubeId ? '//www.youtube.com/user/' . $youtubeId : null;
+            if (isset($party->social_networks->youtube)) {
+                $youtubeId = $party->social_networks->youtube;
+                $partyLink = $youtubeId ? '//www.youtube.com/user/' . $youtubeId : null;
+            }
             break;
         case 'website': default:
-            $partyLink = $party->websites->official;
+            if (isset($party->websites->official)) {
+                $partyLink = $party->websites->official;
+            }
             break;
     }
 
     if (!$partyLink || !$partyText) {
         continue;
     }
-    echo '<li>';
-    echo '<a href="' . $partyLink . '">' . $partyText . '</a>';
-    echo '</li>';
+    echo '<li><a href="' . $partyLink . '">' . $partyText . '</a></li>';
 }
 ?>
 

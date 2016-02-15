@@ -6,11 +6,11 @@ class Parties {
     private function remoteGet() {
         $response = wp_remote_get($this->apiUrl);
         if (!is_array($response) || !isset($response['body'])) {
-            return null;
+            return [];
         }
         $parties = json_decode($response['body']);
         if ($parties === null) {
-            return null;
+            return [];
         }
         return get_object_vars($parties);
     }
@@ -18,10 +18,10 @@ class Parties {
     private function filter($parties, $ppiFilter, $ppeuFilter) {
         $filteredParties = array();
         foreach ($parties as $party) {
-            if ($ppiFilter === '1' && !$party->membership->ppi) {
+            if ($ppiFilter === '1' && (!isset($party->membership->ppi) || !$party->membership->ppi)) {
                 continue;
             }
-            if ($ppeuFilter === '1' && !$party->membership->ppeu) {
+            if ($ppeuFilter === '1' && (!isset($party->membership->ppeu) || !$party->membership->ppeu)) {
                 continue;
             }
             $filteredParties[] = $party;
@@ -33,19 +33,21 @@ class Parties {
         switch ($displayOption) {
             case 'native':
                 usort($parties, function($a, $b) {
-                    $countryCodeA = $a->countryCode;
-                    $countryCodeB = $b->countryCode;
-                    return strcmp($a->partyName->{$countryCodeA}, $b->partyName->{$countryCodeB});
+                    $countryCodeA = $a->country_code;
+                    $countryCodeB = $b->country_code;
+                    $nameA = isset($a->name->{$countryCodeA}) ? $a->name->{$countryCodeA} : $a->name->en;
+                    $nameB = isset($b->name->{$countryCodeB}) ? $b->name->{$countryCodeB} : $b->name->en;
+                    return strcmp($nameA, $nameB);
                 });
                 break;
             case 'country':
                 usort($parties, function($a, $b) {
-                    return strcmp($a->country, $b->country);
+                    return strcmp($a->country_name, $b->country_name);
                 });
                 break;
             case 'en': default:
             usort($parties, function($a, $b) {
-                return strcmp($a->partyName->en, $b->partyName->en);
+                return strcmp($a->name->en, $b->name->en);
             });
             break;
         }

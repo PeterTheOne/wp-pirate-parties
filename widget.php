@@ -10,11 +10,12 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
     private $displayOptions = array(
         'en' => 'Party Name in English',
         'native' => 'Party Name in Native Language',
-        'country' => 'Country'
+        'country' => 'Country Name'
     );
 
     private $linkOptions = array(
         'website' => 'Website',
+        'no' => 'No Link',
         'facebook' => 'Facebook',
         'twitter' => 'Twitter',
         'googlePlus' => 'Google+',
@@ -67,7 +68,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         </p>
 
         <p>
-            <label for="<?php echo $this->get_field_id('linkOption'); ?>"><?php _e('Party Link', 'wp_widget_plugin'); ?></label>
+            <label for="<?php echo $this->get_field_id('linkOption'); ?>"><?php _e('Link', 'wp_widget_plugin'); ?></label>
             <select name="<?php echo $this->get_field_name('linkOption'); ?>" id="<?php echo $this->get_field_id('linkOption'); ?>" class="widefat">
                 <?php
                 foreach ($this->linkOptions as $key => $option) {
@@ -79,12 +80,12 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
 
         <p>
             <input id="<?php echo $this->get_field_id('ppiFilter'); ?>" name="<?php echo $this->get_field_name('ppiFilter'); ?>" type="checkbox" value="1" <?php checked( '1', $ppiFilter ); ?> />
-            <label for="<?php echo $this->get_field_id('ppiFilter'); ?>"><?php _e('Filter for PPI', 'wp_widget_plugin'); ?></label>
+            <label for="<?php echo $this->get_field_id('ppiFilter'); ?>"><?php _e('Only show PPI Members', 'wp_widget_plugin'); ?></label>
         </p>
 
         <p>
             <input id="<?php echo $this->get_field_id('ppeuFilter'); ?>" name="<?php echo $this->get_field_name('ppeuFilter'); ?>" type="checkbox" value="1" <?php checked( '1', $ppeuFilter ); ?> />
-            <label for="<?php echo $this->get_field_id('ppeuFilter'); ?>"><?php _e('Filter for PPEU', 'wp_widget_plugin'); ?></label>
+            <label for="<?php echo $this->get_field_id('ppeuFilter'); ?>"><?php _e('Only show PPEU Members', 'wp_widget_plugin'); ?></label>
         </p>
         <?php
         return true;
