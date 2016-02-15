@@ -19,3 +19,5 @@ Production Deploy
 * Install Wordpress on a webserver.
 * Move files to ``*wordpress-install-dir*/wp-content/plugins/wp-pirate-parties``
 * (You can remove the Vagrantfile).
+* Activate the plugin.
+* Add the Widget to the Sidebar.
