@@ -1,9 +1,25 @@
 <?php
 
-class Parties {
+class PartyRepository {
     private $apiUrl = 'http://api.piratetimes.net/api/v1/parties/';
 
-    private function remoteGet() {
+    public function getParty($id) {
+        $response = wp_remote_get($this->apiUrl . $id);
+        if (!is_array($response) || !isset($response['body'])) {
+            return null;
+        }
+        return json_decode($response['body']);
+    }
+
+    public function getParties($ppiFilter, $ppeuFilter, $displayOption) {
+        $parties = $this->getPartiesFromApi();
+        $parties = $this->filter($parties, $ppiFilter, $ppeuFilter);
+        $parties = $this->sort($parties, $displayOption);
+
+        return $parties;
+    }
+
+    private function getPartiesFromApi() {
         $response = wp_remote_get($this->apiUrl);
         if (!is_array($response) || !isset($response['body'])) {
             return [];
@@ -51,14 +67,6 @@ class Parties {
             });
             break;
         }
-        return $parties;
-    }
-
-    public function get($displayOption, $linkOption, $ppiFilter, $ppeuFilter) {
-        $parties = $this->remoteGet();
-        $parties = $this->filter($parties, $ppiFilter, $ppeuFilter);
-        $parties = $this->sort($parties, $displayOption);
-
         return $parties;
     }
 }

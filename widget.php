@@ -1,7 +1,6 @@
 <?php
 
-
-include_once('model/parties.php');
+include_once('model/partyRepository.php');
 
 /**
  * Class Wp_Pirate_Parties
@@ -95,8 +94,8 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         $ppiFilter = $instance['ppiFilter'];
         $ppeuFilter = $instance['ppeuFilter'];
 
-        $partiesModel = new Parties();
-        $parties = $partiesModel->get($displayOption, $linkOption, $ppiFilter, $ppeuFilter);
+        $partiesModel = new PartyRepository();
+        $parties = $partiesModel->getParties($ppiFilter, $ppeuFilter, $displayOption);
 
         ob_start();
         include('view/widget.php');

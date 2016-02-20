@@ -89,6 +89,7 @@ Vagrant.configure(2) do |config|
     cd /var/www/html
     sudo -E wp core config --dbname=wordpress --dbuser=root --dbpass=root --dbhost=localhost --allow-root
 
+    # this doesn't realy work.
     sudo echo "define('WP_DEBUG', true); define('WP_DEBUG_LOG', true);" >> wp-config.php
 
     mysqladmin -u root -proot create wordpress
