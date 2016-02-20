@@ -99,5 +99,9 @@ Vagrant.configure(2) do |config|
 
     sudo -E wp plugin activate wp-pirate-parties --allow-root
     sudo -E wp widget add wp_pirate_parties_widget sidebar-1 1 --title="Pirate Parties" --allow-root
+
+    sudo -E wp core language install de_DE --allow-root
+    sudo -E wp core language install nl_NL --allow-root
+    sudo -E wp core language install it_IT --allow-root
   SHELL
 end

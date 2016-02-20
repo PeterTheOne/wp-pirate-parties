@@ -21,3 +21,11 @@ Production Deploy
 * (You can remove the Vagrantfile).
 * Activate the plugin.
 * Add the Widget to the Sidebar.
+
+Generate l10n .pot and .mo files
+--------------------------------
+Run
+`xgettext --from-code=utf-8 -k_e -k_x -k__ -o language/wp-pirate-parties.pot $(find . -name "*.php")`.
+
+To create .mo files run
+`msgfmt -o wp-pirate-parties-de_DE.mo wp-pirate-parties-de_DE.po`

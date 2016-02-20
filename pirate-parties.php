@@ -20,3 +20,7 @@ include_once('widget.php');
 class Wp_Pirate_Parties {
 
 }
+
+add_action('plugins_loaded', function() {
+    load_plugin_textdomain('wp-pirate-parties', false, plugin_basename(dirname(__FILE__)) . '/languages');
+});

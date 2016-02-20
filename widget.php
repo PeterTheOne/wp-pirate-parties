@@ -7,23 +7,27 @@ include_once('model/parties.php');
  * Class Wp_Pirate_Parties
  */
 class Wp_Pirate_Parties_Widget extends WP_Widget {
-    private $displayOptions = array(
-        'en' => 'Party Name in English',
-        'native' => 'Party Name in Native Language',
-        'country' => 'Country Name'
-    );
+    private $displayOptions = [];
 
-    private $linkOptions = array(
-        'website' => 'Website',
-        'no' => 'No Link',
-        'facebook' => 'Facebook',
-        'twitter' => 'Twitter',
-        'googlePlus' => 'Google+',
-        'youtube' => 'Youtube'
-    );
+    private $linkOptions = [];
 
     function Wp_Pirate_Parties_Widget() {
         parent::__construct(false, $name = __('Wp Pirate Parties', 'Wp_Pirate_Parties'));
+
+        $this->displayOptions = array(
+            'en' => __('Party name in english', 'wp-pirate-parties'),
+            'native' => __('Party name in native languages'),
+            'country' => __('Country Name')
+        );
+
+        $this->linkOptions = array(
+            'website' => __('Website'),
+            'no' => __('No Link'),
+            'facebook' => 'Facebook',
+            'twitter' => 'Twitter',
+            'googlePlus' => 'Google+',
+            'youtube' => 'Youtube'
+        );
     }
 
     /**
@@ -62,7 +66,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
     function update($new_instance, $old_instance) {
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
-        $instance['text'] = strip_tags($new_instance['text']);
+        $instance['text'] = $new_instance['text'];
         $instance['displayOption'] = strip_tags($new_instance['displayOption']);
         $instance['linkOption'] = strip_tags($new_instance['linkOption']);
         $instance['ppiFilter'] = strip_tags($new_instance['ppiFilter']);
