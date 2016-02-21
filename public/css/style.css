@@ -1,6 +1,7 @@
 .pirate-party.shortcode {
     clear: both;
     margin: 0 0 1.75em;
+    min-height: 150px;
 }
 
 .pirate-party.shortcode .logo {
