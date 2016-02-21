@@ -7,6 +7,13 @@ A wordpress plugin that displays pirate parties as a widget, datasource is the
 * Author: [Peter Grassberger](http://petergrassberger.com)
 * License: MIT
 
+Usage Widget and Shortcode
+--------------------------
+
+* Activate plugin.
+* Add Widget to Sidebar.
+* user `[pirate-party id="ppat"]` shorcode in post.
+
 Development with Vagrant
 ------------------------
 
@@ -25,7 +32,7 @@ Production Deploy
 Generate l10n .pot and .mo files
 --------------------------------
 Run
-`xgettext --from-code=utf-8 -k_e -k_x -k__ -o language/wp-pirate-parties.pot $(find . -name "*.php")`.
+`xgettext --from-code=utf-8 -k_e -k_x -k__ -o languages/wp-pirate-parties.pot $(find . -name "*.php")`.
 
 To create .mo files run
 `msgfmt -o wp-pirate-parties-de_DE.mo wp-pirate-parties-de_DE.po`

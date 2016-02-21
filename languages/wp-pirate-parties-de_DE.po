@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-02-20 23:22+0100\n"
-"PO-Revision-Date: 2016-02-20 23:28+0100\n"
+"POT-Creation-Date: 2016-02-21 02:53+0100\n"
+"PO-Revision-Date: 2016-02-21 02:53+0100\n"
 "Last-Translator: PeterTheOne <petertheone@petertheone-pc>\n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -16,6 +16,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: view/shortcode.php:26
+msgid "Member of "
+msgstr "Mitglied von "
 
 #: view/widgetForm.php:2
 msgid "Widget Title"
@@ -41,26 +45,30 @@ msgstr "Zeige nur PPI Mitglieder"
 msgid "Only show PPEU Members"
 msgstr "Zeige nur PPEU Mitglieder"
 
-#: widget.php:15
+#: shortcode.php:23
+msgid "not found."
+msgstr "nicht gefunden."
+
+#: Wp_Pirate_Parties_Widget.php:14
 msgid "Wp Pirate Parties"
 msgstr "Wp Piratenparteien"
 
-#: widget.php:18
+#: Wp_Pirate_Parties_Widget.php:17
 msgid "Party name in english"
 msgstr "Parteiname auf Englisch"
 
-#: widget.php:19
+#: Wp_Pirate_Parties_Widget.php:18
 msgid "Party name in native languages"
 msgstr "Parteiname Originalsprache"
 
-#: widget.php:20
+#: Wp_Pirate_Parties_Widget.php:19
 msgid "Country Name"
 msgstr "Landesnamen"
 
-#: widget.php:24
+#: Wp_Pirate_Parties_Widget.php:23
 msgid "Website"
 msgstr "Webseite"
 
-#: widget.php:25
+#: Wp_Pirate_Parties_Widget.php:24
 msgid "No Link"
 msgstr "Kein Link"

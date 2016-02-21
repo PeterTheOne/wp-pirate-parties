@@ -1,0 +1,20 @@
+.pirate-party.shortcode {
+    clear: both;
+    margin: 0 0 1.75em;
+}
+
+.pirate-party.shortcode .logo {
+    float: left;
+    max-width: 150px;
+    max-height: 150px;
+    margin-right: 20px;
+}
+
+.pirate-party.shortcode .partyName {
+    display: inline-block;
+    margin: 0;
+}
+
+.pirate-party.shortcode ul {
+    list-style: none;
+}

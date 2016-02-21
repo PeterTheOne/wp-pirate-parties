@@ -12,7 +12,9 @@
 	License URI: http://opensource.org/licenses/MIT
 */
 
-include_once('widget.php');
+// todo: move to folder "controler"
+include_once(plugin_dir_path(__FILE__) . 'Wp_Pirate_Parties_Widget.php');
+include_once(plugin_dir_path(__FILE__) . 'shortcode.php');
 
 /**
  * Class Wp_Pirate_Parties
@@ -20,6 +22,9 @@ include_once('widget.php');
 class Wp_Pirate_Parties {
 
 }
+add_action('wp_enqueue_scripts', function() {
+    wp_enqueue_style('wp-pirate-parties', plugins_url('css/style.css', __FILE__));
+});
 
 add_action('plugins_loaded', function() {
     load_plugin_textdomain('wp-pirate-parties', false, plugin_basename(dirname(__FILE__)) . '/languages');

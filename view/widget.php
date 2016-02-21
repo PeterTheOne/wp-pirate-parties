@@ -47,7 +47,7 @@ foreach ($parties as $party) {
         case 'facebook':
             if (isset($party->social_networks->facebook->id)) {
                 $facebookId = $party->social_networks->facebook->id;
-                $partyLink = $facebookId ? '//www.facebook.com/' . $facebookId : null;
+                $partyLink = $facebookId ? '//facebook.com/' . $facebookId : null;
             }
             break;
         case 'twitter':
@@ -65,7 +65,7 @@ foreach ($parties as $party) {
         case 'youtube':
             if (isset($party->social_networks->youtube)) {
                 $youtubeId = $party->social_networks->youtube;
-                $partyLink = $youtubeId ? '//www.youtube.com/user/' . $youtubeId : null;
+                $partyLink = $youtubeId ? '//youtube.com/user/' . $youtubeId : null;
             }
             break;
         case 'website': default:

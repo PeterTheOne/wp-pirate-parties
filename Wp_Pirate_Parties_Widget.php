@@ -1,6 +1,6 @@
 <?php
 
-include_once('model/partyRepository.php');
+include_once(plugin_dir_path(__FILE__) . 'model/partyRepository.php');
 
 /**
  * Class Wp_Pirate_Parties
@@ -11,17 +11,17 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
     private $linkOptions = [];
 
     function Wp_Pirate_Parties_Widget() {
-        parent::__construct(false, $name = __('Wp Pirate Parties', 'Wp_Pirate_Parties'));
+        parent::__construct(false, $name = __('Wp Pirate Parties', 'wp-pirate-parties'));
 
         $this->displayOptions = array(
             'en' => __('Party name in english', 'wp-pirate-parties'),
-            'native' => __('Party name in native languages'),
-            'country' => __('Country Name')
+            'native' => __('Party name in native languages', 'wp-pirate-parties'),
+            'country' => __('Country Name', 'wp-pirate-parties')
         );
 
         $this->linkOptions = array(
-            'website' => __('Website'),
-            'no' => __('No Link'),
+            'website' => __('Website', 'wp-pirate-parties'),
+            'no' => __('No Link', 'wp-pirate-parties'),
             'facebook' => 'Facebook',
             'twitter' => 'Twitter',
             'googlePlus' => 'Google+',
@@ -34,6 +34,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
      * @return bool
      */
     function form($instance) {
+        // todo: use wp_parse_args?
         $title = '';
         $text = '';
         $displayOption = '';
@@ -50,7 +51,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         }
 
         ob_start();
-        include('view/widgetForm.php');
+        include(plugin_dir_path(__FILE__) . 'view/widgetForm.php');
         $output = ob_get_clean();
         echo $output;
 
@@ -94,11 +95,11 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         $ppiFilter = $instance['ppiFilter'];
         $ppeuFilter = $instance['ppeuFilter'];
 
-        $partiesModel = new PartyRepository();
-        $parties = $partiesModel->getParties($ppiFilter, $ppeuFilter, $displayOption);
+        $partyRepository = new PartyRepository();
+        $parties = $partyRepository->getParties($ppiFilter, $ppeuFilter, $displayOption);
 
         ob_start();
-        include('view/widget.php');
+        include(plugin_dir_path(__FILE__) . 'view/widget.php');
         $output = ob_get_clean();
         echo $output;
     }
