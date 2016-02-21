@@ -19,7 +19,8 @@ Development with Vagrant
 ------------------------
 
 * Install [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
-* run ``vagrant up``.
+* Run ``vagrant up``.
+* Open `http://localhost:8080/` in your browser.
 
 Production Deploy
 -----------------
