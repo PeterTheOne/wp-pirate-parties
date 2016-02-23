@@ -79,7 +79,11 @@ foreach ($parties as $party) {
             break;
     }
 
-    if (!$partyLink || !$partyText) {
+    if (!$partyText) {
+        continue;
+    }
+    if (!$partyLink) {
+        echo '<li>'. $partyText . '</li>';
         continue;
     }
     echo '<li><a href="' . $partyLink . '">' . $partyText . '</a></li>';
