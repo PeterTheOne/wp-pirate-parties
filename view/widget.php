@@ -84,6 +84,21 @@ foreach ($parties as $party) {
                 $partyLink = 'irc://' . $ircServer . '/' . $ircChannel;
             }
             break;
+        case 'wiki':
+            if (isset($party->websites->wiki)) {
+                $partyLink = $party->websites->wiki;
+            }
+            break;
+        case 'forum':
+            if (isset($party->websites->forum)) {
+                $partyLink = $party->websites->forum;
+            }
+            break;
+        case 'liquidfeedback':
+            if (isset($party->websites->liquidfeedback)) {
+                $partyLink = $party->websites->liquidfeedback;
+            }
+            break;
         case 'website': default:
             if (isset($party->websites->official)) {
                 $partyLink = $party->websites->official;

@@ -28,7 +28,10 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
             'twitter' => 'Twitter',
             'googlePlus' => 'Google+',
             'youtube' => 'Youtube',
-            'irc' => 'IRC'
+            'irc' => 'IRC',
+            'wiki' => 'Wiki',
+            'forum' => 'Forum',
+            'liquidfeedback' => 'LiquidFeedback'
         );
     }
 
