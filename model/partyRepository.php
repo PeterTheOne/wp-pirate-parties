@@ -63,14 +63,20 @@ class PartyRepository {
                     return strcmp($a->country_name, $b->country_name);
                 });
                 break;
-            case 'en': default:
+            case 'country_code':
                 usort($parties, function($a, $b) {
-                    return strcmp($a->name->en, $b->name->en);
+                    return strcmp($a->country_code, $b->country_code);
                 });
                 break;
             case 'nameLength':
                 usort($parties, function($a, $b) {
                     return strcmp(strlen($a->name->en), strlen($b->name->en));
+                });
+                break;
+            // todo: add 'link' option
+            case 'en': default:
+                usort($parties, function($a, $b) {
+                    return strcmp($a->name->en, $b->name->en);
                 });
                 break;
         }
