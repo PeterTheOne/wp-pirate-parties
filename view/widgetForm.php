@@ -31,6 +31,11 @@
 </p>
 
 <p>
+    <input id="<?php echo $this->get_field_id('hideNoLink'); ?>" name="<?php echo $this->get_field_name('hideNoLink'); ?>" type="checkbox" value="1" <?php checked( '1', $ppiFilter ); ?> />
+    <label for="<?php echo $this->get_field_id('hideNoLink'); ?>"><?php _e('Hide when no Link found', 'wp-pirate-parties'); ?></label>
+</p>
+
+<p>
     <input id="<?php echo $this->get_field_id('ppiFilter'); ?>" name="<?php echo $this->get_field_name('ppiFilter'); ?>" type="checkbox" value="1" <?php checked( '1', $ppiFilter ); ?> />
     <label for="<?php echo $this->get_field_id('ppiFilter'); ?>"><?php _e('Only show PPI Members', 'wp-pirate-parties'); ?></label>
 </p>

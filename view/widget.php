@@ -115,7 +115,9 @@ foreach ($parties as $party) {
         continue;
     }
     if (!$partyLink) {
-        echo '<li>'. $partyText . '</li>';
+        if (!$hideNoLink) {
+            echo '<li>'. $partyText . '</li>';
+        }
         continue;
     }
     echo '<li><a href="' . $partyLink . '">' . $partyText . '</a></li>';

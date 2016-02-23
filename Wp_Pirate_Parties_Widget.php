@@ -46,6 +46,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         $text = '';
         $displayOption = '';
         $linkOption = '';
+        $hideNoLink = '';
         $ppiFilter = '';
         $ppeuFilter = '';
         if($instance) {
@@ -53,6 +54,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
             $text = esc_attr($instance['text']);
             $displayOption = esc_attr($instance['displayOption']);
             $linkOption = esc_attr($instance['linkOption']);
+            $hideNoLink = esc_attr($instance['hideNoLink']);
             $ppiFilter = esc_attr($instance['ppiFilter']);
             $ppeuFilter = esc_attr($instance['ppeuFilter']);
         }
@@ -76,6 +78,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         $instance['text'] = $new_instance['text'];
         $instance['displayOption'] = strip_tags($new_instance['displayOption']);
         $instance['linkOption'] = strip_tags($new_instance['linkOption']);
+        $instance['hideNoLink'] = strip_tags($new_instance['hideNoLink']);
         $instance['ppiFilter'] = strip_tags($new_instance['ppiFilter']);
         $instance['ppeuFilter'] = strip_tags($new_instance['ppeuFilter']);
         return $instance;
@@ -99,6 +102,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
 
         $displayOption = $instance['displayOption'];
         $linkOption = $instance['linkOption'];
+        $hideNoLink = $instance['linkOption'];
         $ppiFilter = $instance['ppiFilter'];
         $ppeuFilter = $instance['ppeuFilter'];
 
