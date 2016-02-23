@@ -27,8 +27,9 @@ foreach ($parties as $party) {
             $country_code = strtolower($party->country_code);
             if (isset($party->name->{$country_code})) {
                 $partyText = $party->name->{$country_code};
+            } else {
+                $partyText = $party->name->en;
             }
-            $partyText = $party->name->en;
             break;
         case 'country':
             $partyText = $party->country_name;
