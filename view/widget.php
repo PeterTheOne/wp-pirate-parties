@@ -99,6 +99,11 @@ foreach ($parties as $party) {
                 $partyLink = $party->websites->liquidfeedback;
             }
             break;
+        case 'contactGeneralEmail':
+            if (isset($party->contact->general->email)) {
+                $partyLink = 'mailto:' . $party->contact->general->email;
+            }
+            break;
         case 'website': default:
             if (isset($party->websites->official)) {
                 $partyLink = $party->websites->official;

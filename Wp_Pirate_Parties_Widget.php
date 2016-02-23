@@ -31,7 +31,8 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
             'irc' => 'IRC',
             'wiki' => 'Wiki',
             'forum' => 'Forum',
-            'liquidfeedback' => 'LiquidFeedback'
+            'liquidfeedback' => 'LiquidFeedback',
+            'contactGeneralEmail' => __('Contact generel E-Mail', 'wp-pirate-parties')
         );
     }
 
