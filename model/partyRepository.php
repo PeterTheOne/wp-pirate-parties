@@ -11,10 +11,10 @@ class PartyRepository {
         return json_decode($response['body']);
     }
 
-    public function getParties($ppiFilter, $ppeuFilter, $displayOption) {
+    public function getParties($ppiFilter, $ppeuFilter, $linkText) {
         $parties = $this->getPartiesFromApi();
         $parties = $this->filter($parties, $ppiFilter, $ppeuFilter);
-        $parties = $this->sort($parties, $displayOption);
+        $parties = $this->sort($parties, $linkText);
 
         return $parties;
     }
@@ -45,8 +45,8 @@ class PartyRepository {
         return $filteredParties;
     }
 
-    private function sort($parties, $displayOption) {
-        switch ($displayOption) {
+    private function sort($parties, $linkText) {
+        switch ($linkText) {
             case 'native':
                 usort($parties, function($a, $b) {
                     $countryCodeA = $a->country_code;

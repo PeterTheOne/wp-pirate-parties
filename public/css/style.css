@@ -1,3 +1,19 @@
+.widget_wp_pirate_parties_widget ul.wp-pp-inline {
+    list-style: none;
+    margin-left: 0;
+    margin-bottom: 0;
+}
+.widget_wp_pirate_parties_widget ul.wp-pp-inline:after {
+    content: '';
+    clear: both;
+    display: block;
+}
+
+.widget_wp_pirate_parties_widget ul.wp-pp-inline li {
+    float: left;
+    margin-right: 1em;
+}
+
 .pirate-party.shortcode {
     clear: both;
     margin: 0 0 1.75em;

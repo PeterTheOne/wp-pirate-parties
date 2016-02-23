@@ -6,21 +6,21 @@ include_once(plugin_dir_path(__FILE__) . 'model/partyRepository.php');
  * Class Wp_Pirate_Parties
  */
 class Wp_Pirate_Parties_Widget extends WP_Widget {
-    private $displayOptions = [];
+    private $linkTexts = [];
 
-    private $linkOptions = [];
+    private $links = [];
 
     function Wp_Pirate_Parties_Widget() {
         parent::__construct(false, $name = __('Wp Pirate Parties', 'wp-pirate-parties'));
 
-        $this->displayOptions = array(
+        $this->linkTexts = array(
             'en' => __('Party name in english', 'wp-pirate-parties'),
             'code' => __('Party Code', 'wp-pirate-parties'),
             'native' => __('Party name in native languages', 'wp-pirate-parties'),
             'country' => __('Country Name', 'wp-pirate-parties')
         );
 
-        $this->linkOptions = array(
+        $this->links = array(
             'website' => __('Website', 'wp-pirate-parties'),
             'papi' => 'Papi',
             'no' => __('No Link', 'wp-pirate-parties'),
@@ -45,8 +45,9 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         $title = '';
         $text = '';
         $showFlags = '';
+        $linkText = '';
+        $link = '';
         $displayOption = '';
-        $linkOption = '';
         $hideNoLink = '';
         $ppiFilter = '';
         $ppeuFilter = '';
@@ -54,8 +55,9 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
             $title = esc_attr($instance['title']);
             $text = esc_attr($instance['text']);
             $showFlags = esc_attr($instance['showFlags']);
+            $linkText = esc_attr($instance['linkText']);
+            $link = esc_attr($instance['link']);
             $displayOption = esc_attr($instance['displayOption']);
-            $linkOption = esc_attr($instance['linkOption']);
             $hideNoLink = esc_attr($instance['hideNoLink']);
             $ppiFilter = esc_attr($instance['ppiFilter']);
             $ppeuFilter = esc_attr($instance['ppeuFilter']);
@@ -79,8 +81,9 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['text'] = $new_instance['text'];
         $instance['showFlags'] = strip_tags($new_instance['showFlags']);
+        $instance['linkText'] = strip_tags($new_instance['linkText']);
+        $instance['link'] = strip_tags($new_instance['link']);
         $instance['displayOption'] = strip_tags($new_instance['displayOption']);
-        $instance['linkOption'] = strip_tags($new_instance['linkOption']);
         $instance['hideNoLink'] = strip_tags($new_instance['hideNoLink']);
         $instance['ppiFilter'] = strip_tags($new_instance['ppiFilter']);
         $instance['ppeuFilter'] = strip_tags($new_instance['ppeuFilter']);
@@ -103,14 +106,15 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         $title = apply_filters('widget_title', $instance['title']);
         $text = $instance['text'];
         $showFlags = $instance['showFlags'];
+        $linkText = $instance['linkText'];
+        $link = $instance['link'];
         $displayOption = $instance['displayOption'];
-        $linkOption = $instance['linkOption'];
-        $hideNoLink = $instance['linkOption'];
+        $hideNoLink = $instance['hideNoLink'];
         $ppiFilter = $instance['ppiFilter'];
         $ppeuFilter = $instance['ppeuFilter'];
 
         $partyRepository = new PartyRepository();
-        $parties = $partyRepository->getParties($ppiFilter, $ppeuFilter, $displayOption);
+        $parties = $partyRepository->getParties($ppiFilter, $ppeuFilter, $linkText);
 
         ob_start();
         include(plugin_dir_path(__FILE__) . 'view/widget.php');

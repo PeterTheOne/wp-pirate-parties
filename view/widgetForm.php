@@ -14,24 +14,32 @@
 </p>
 
 <p>
-    <label for="<?php echo $this->get_field_id('displayOption'); ?>"><?php _e('Party Text', 'wp-pirate-parties'); ?></label>
-    <select name="<?php echo $this->get_field_name('displayOption'); ?>" id="<?php echo $this->get_field_id('displayOption'); ?>" class="widefat">
+    <label for="<?php echo $this->get_field_id('linkText'); ?>"><?php _e('Party Text', 'wp-pirate-parties'); ?></label>
+    <select name="<?php echo $this->get_field_name('linkText'); ?>" id="<?php echo $this->get_field_id('linkText'); ?>" class="widefat">
         <?php
-        foreach ($this->displayOptions as $key => $option) {
-            echo '<option value="' . $key . '" ', $displayOption == $key ? ' selected="selected"' : '', '>', $option, '</option>';
+        foreach ($this->linkTexts as $key => $option) {
+            echo '<option value="' . $key . '" ', $linkText == $key ? ' selected="selected"' : '', '>', $option, '</option>';
         }
         ?>
     </select>
 </p>
 
 <p>
-    <label for="<?php echo $this->get_field_id('linkOption'); ?>"><?php _e('Link', 'wp-pirate-parties'); ?></label>
-    <select name="<?php echo $this->get_field_name('linkOption'); ?>" id="<?php echo $this->get_field_id('linkOption'); ?>" class="widefat">
+    <label for="<?php echo $this->get_field_id('link'); ?>"><?php _e('Link', 'wp-pirate-parties'); ?></label>
+    <select name="<?php echo $this->get_field_name('link'); ?>" id="<?php echo $this->get_field_id('link'); ?>" class="widefat">
         <?php
-        foreach ($this->linkOptions as $key => $option) {
-            echo '<option value="' . $key . '" ', $linkOption == $key ? ' selected="selected"' : '', '>', $option, '</option>';
+        foreach ($this->links as $key => $option) {
+            echo '<option value="' . $key . '" ', $link == $key ? ' selected="selected"' : '', '>', $option, '</option>';
         }
         ?>
+    </select>
+</p>
+
+<p>
+    <label for="<?php echo $this->get_field_id('displayOption'); ?>"><?php _e('Display Option', 'wp-pirate-parties'); ?></label>
+    <select name="<?php echo $this->get_field_name('displayOption'); ?>" id="<?php echo $this->get_field_id('displayOption'); ?>" class="widefat">
+        <option value="list"<?php echo $displayOption == "list" ? ' selected="selected"' : ''; ?>>List</option>
+        <option value="inline"<?php echo $displayOption == "inline" ? ' selected="selected"' : ''; ?>>Inline</option>
     </select>
 </p>
 

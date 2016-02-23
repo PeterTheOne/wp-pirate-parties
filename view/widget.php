@@ -16,13 +16,13 @@ if($text) {
 
 ?>
 
-    <ul>
+    <ul class="wp-pp-<?php echo $displayOption; ?>">
 
 <?php
 foreach ($parties as $party) {
     $partyLink = null;
     $partyText = null;
-    switch ($displayOption) {
+    switch ($linkText) {
         case 'native':
             $country_code = strtolower($party->country_code);
             if (isset($party->name->{$country_code})) {
@@ -47,12 +47,12 @@ foreach ($parties as $party) {
         $flag = '<span class="flag-icon flag-icon-' . $party->country_code . '"></span> ';
     }
 
-    if ($linkOption === 'no') {
+    if ($link === 'no') {
         echo '<li>'. $flag . $partyText . '</li>';
         continue;
     }
 
-    switch ($linkOption) {
+    switch ($link) {
         case 'facebook':
             if (isset($party->social_networks->facebook->id)) {
                 $facebookId = $party->social_networks->facebook->id;
