@@ -15,9 +15,11 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
 
         $this->linkTexts = array(
             'en' => __('Party name in english', 'wp-pirate-parties'),
-            'code' => __('Party Code', 'wp-pirate-parties'),
             'native' => __('Party name in native languages', 'wp-pirate-parties'),
-            'country' => __('Country Name', 'wp-pirate-parties')
+            'code' => __('Party Code', 'wp-pirate-parties'),
+            'country' => __('Country Name', 'wp-pirate-parties'),
+            'country_code' => __('Country Code', 'wp-pirate-parties'),
+            'link' => __('Link dependent', 'wp-pirate-parties')
         );
 
         $this->links = array(
