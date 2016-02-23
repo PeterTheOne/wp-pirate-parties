@@ -34,6 +34,9 @@ foreach ($parties as $party) {
         case 'country':
             $partyText = $party->country_name;
             break;
+        case 'code':
+            $partyText = $party->code;
+            break;
         case 'en': default:
             $partyText = $party->name->en;
             break;

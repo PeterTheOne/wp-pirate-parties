@@ -15,6 +15,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
 
         $this->displayOptions = array(
             'en' => __('Party name in english', 'wp-pirate-parties'),
+            'code' => __('Party Code', 'wp-pirate-parties'),
             'native' => __('Party name in native languages', 'wp-pirate-parties'),
             'country' => __('Country Name', 'wp-pirate-parties')
         );
