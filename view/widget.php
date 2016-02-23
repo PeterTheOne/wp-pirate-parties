@@ -75,6 +75,15 @@ foreach ($parties as $party) {
         case 'papi':
             $partyLink = 'http://api.piratetimes.net/party/' . strtolower($party->code);
             break;
+        case 'irc':
+            if (isset($party->social_networks->irc) &&
+                    isset($party->social_networks->irc->ircServer) &&
+                    isset($party->social_networks->irc->ircChannel)) {
+                $ircServer = $party->social_networks->irc->ircServer;
+                $ircChannel = $party->social_networks->irc->ircChannel;
+                $partyLink = 'irc://' . $ircServer . '/' . $ircChannel;
+            }
+            break;
         case 'website': default:
             if (isset($party->websites->official)) {
                 $partyLink = $party->websites->official;

@@ -27,7 +27,8 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
             'facebook' => 'Facebook',
             'twitter' => 'Twitter',
             'googlePlus' => 'Google+',
-            'youtube' => 'Youtube'
+            'youtube' => 'Youtube',
+            'irc' => 'IRC'
         );
     }
 
