@@ -42,8 +42,13 @@ foreach ($parties as $party) {
             break;
     }
 
+    $flag = '';
+    if ($showFlags) {
+        $flag = '<span class="flag-icon flag-icon-' . $party->country_code . '"></span> ';
+    }
+
     if ($linkOption === 'no') {
-        echo '<li>'. $partyText . '</li>';
+        echo '<li>'. $flag . $partyText . '</li>';
         continue;
     }
 
@@ -116,11 +121,11 @@ foreach ($parties as $party) {
     }
     if (!$partyLink) {
         if (!$hideNoLink) {
-            echo '<li>'. $partyText . '</li>';
+            echo '<li>'. $flag . $partyText . '</li>';
         }
         continue;
     }
-    echo '<li><a href="' . $partyLink . '">' . $partyText . '</a></li>';
+    echo '<li><a href="' . $partyLink . '">' . $flag . $partyText . '</a></li>';
 }
 ?>
 

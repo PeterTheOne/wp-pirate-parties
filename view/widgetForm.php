@@ -9,6 +9,11 @@
 </p>
 
 <p>
+    <input id="<?php echo $this->get_field_id('showFlags'); ?>" name="<?php echo $this->get_field_name('showFlags'); ?>" type="checkbox" value="1" <?php checked( '1', $showFlags ); ?> />
+    <label for="<?php echo $this->get_field_id('showFlags'); ?>"><?php _e('Show flags', 'wp-pirate-parties'); ?></label>
+</p>
+
+<p>
     <label for="<?php echo $this->get_field_id('displayOption'); ?>"><?php _e('Party Text', 'wp-pirate-parties'); ?></label>
     <select name="<?php echo $this->get_field_name('displayOption'); ?>" id="<?php echo $this->get_field_id('displayOption'); ?>" class="widefat">
         <?php
@@ -31,7 +36,7 @@
 </p>
 
 <p>
-    <input id="<?php echo $this->get_field_id('hideNoLink'); ?>" name="<?php echo $this->get_field_name('hideNoLink'); ?>" type="checkbox" value="1" <?php checked( '1', $ppiFilter ); ?> />
+    <input id="<?php echo $this->get_field_id('hideNoLink'); ?>" name="<?php echo $this->get_field_name('hideNoLink'); ?>" type="checkbox" value="1" <?php checked( '1', $hideNoLink ); ?> />
     <label for="<?php echo $this->get_field_id('hideNoLink'); ?>"><?php _e('Hide when no Link found', 'wp-pirate-parties'); ?></label>
 </p>
 

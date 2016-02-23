@@ -7,6 +7,8 @@ A wordpress plugin that displays pirate parties as a widget, datasource is the
 * Author: [Peter Grassberger](http://petergrassberger.com)
 * License: MIT
 
+Flag Icons: [lipis/flag-icon-css](https://github.com/lipis/flag-icon-css)
+
 Usage Widget and Shortcode
 --------------------------
 

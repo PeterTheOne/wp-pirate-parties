@@ -24,6 +24,7 @@ class Wp_Pirate_Parties {
 }
 add_action('wp_enqueue_scripts', function() {
     wp_enqueue_style('wp-pirate-parties', plugins_url('public/css/style.css', __FILE__));
+    wp_enqueue_style('flag-iconhtop', plugins_url('public/css/flag-icon.min.css', __FILE__));
 });
 
 add_action('plugins_loaded', function() {

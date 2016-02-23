@@ -44,6 +44,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         // todo: use wp_parse_args?
         $title = '';
         $text = '';
+        $showFlags = '';
         $displayOption = '';
         $linkOption = '';
         $hideNoLink = '';
@@ -52,6 +53,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         if($instance) {
             $title = esc_attr($instance['title']);
             $text = esc_attr($instance['text']);
+            $showFlags = esc_attr($instance['showFlags']);
             $displayOption = esc_attr($instance['displayOption']);
             $linkOption = esc_attr($instance['linkOption']);
             $hideNoLink = esc_attr($instance['hideNoLink']);
@@ -76,6 +78,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['text'] = $new_instance['text'];
+        $instance['showFlags'] = strip_tags($new_instance['showFlags']);
         $instance['displayOption'] = strip_tags($new_instance['displayOption']);
         $instance['linkOption'] = strip_tags($new_instance['linkOption']);
         $instance['hideNoLink'] = strip_tags($new_instance['hideNoLink']);
@@ -99,7 +102,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
 
         $title = apply_filters('widget_title', $instance['title']);
         $text = $instance['text'];
-
+        $showFlags = $instance['showFlags'];
         $displayOption = $instance['displayOption'];
         $linkOption = $instance['linkOption'];
         $hideNoLink = $instance['linkOption'];
