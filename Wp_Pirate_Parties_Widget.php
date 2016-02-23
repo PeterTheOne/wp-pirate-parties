@@ -21,6 +21,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
 
         $this->linkOptions = array(
             'website' => __('Website', 'wp-pirate-parties'),
+            'papi' => 'Papi',
             'no' => __('No Link', 'wp-pirate-parties'),
             'facebook' => 'Facebook',
             'twitter' => 'Twitter',

@@ -69,6 +69,9 @@ foreach ($parties as $party) {
                 $partyLink = $youtubeId ? '//youtube.com/user/' . $youtubeId : null;
             }
             break;
+        case 'papi':
+            $partyLink = 'http://api.piratetimes.net/party/' . strtolower($party->code);
+            break;
         case 'website': default:
             if (isset($party->websites->official)) {
                 $partyLink = $party->websites->official;
