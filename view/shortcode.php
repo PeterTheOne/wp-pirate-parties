@@ -32,7 +32,7 @@
         <li><a href="<?php echo $party->websites->official; ?>"><?php echo $party->websites->official; ?></a></li>
         <?php } ?>
         <?php if ($attributes['show-facebook'] && isset($party->social_networks->facebook->username)) { ?>
-        <li><a href="//facebook.com/<?php echo $party->social_networks->facebook->username; ?>">Facebook</a></li>
+        <li><a href="//facebook.com/<?php echo $party->social_networks->facebook->username; ?>">http://facebook.com/<?php echo $party->social_networks->facebook->username; ?></a></li>
         <?php } ?>
         <?php if ($attributes['show-twitter'] && isset($party->social_networks->twitter->username)) { ?>
         <li><a href="//twitter.com/<?php echo $party->social_networks->twitter->username; ?>">@<?php echo $party->social_networks->twitter->username; ?></a></li>

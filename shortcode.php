@@ -5,16 +5,27 @@ include_once(plugin_dir_path(__FILE__) . 'model/partyRepository.php');
 function piratePartyShortcode($attributes) {
     $defaultAttributes = array(
         'id' => null,
+        'show-all' => false,
         'show-logo' => true,
         'show-native-name' => true,
-        'show-memberships' => true,
+        'show-memberships' => false,
         'show-website' => true,
-        'show-facebook' => false,
+        'show-facebook' => true,
         'show-twitter' => true,
         'show-googleplus' => false,
         'show-youtube' => false
     );
     $attributes = shortcode_atts($defaultAttributes, $attributes);
+    if ($attributes['show-all']) {
+        $attributes['show-logo'] = true;
+        $attributes['show-native-name'] = true;
+        $attributes['show-memberships'] = true;
+        $attributes['show-website'] = true;
+        $attributes['show-facebook'] = true;
+        $attributes['show-twitter'] = true;
+        $attributes['show-googleplus'] = true;
+        $attributes['show-youtube'] = true;
+    }
 
     $partyRepository = new PartyRepository();
     $party = $partyRepository->getParty($attributes['id']);

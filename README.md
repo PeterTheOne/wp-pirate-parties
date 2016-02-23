@@ -16,6 +16,7 @@ Usage Widget and Shortcode
 * Add Widget to Sidebar.
 * user `[pirate-party id="ppat"]` shorcode in post.
 * Full shortcode options: `[pirate-party id="ppat" show-logo="1" show-native-name="1" show-membershipsshow-website="1" show-facebook="0" show-twitter="1" show-googleplus="0" show-youtube="0"]`.
+* `show-all="1"` overwrites all show options and sets them to `1`.
 
 Development with Vagrant
 ------------------------
