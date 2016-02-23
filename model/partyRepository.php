@@ -14,7 +14,9 @@ class PartyRepository {
     public function getParties($ppiFilter, $ppeuFilter, $linkText) {
         $parties = $this->getPartiesFromApi();
         $parties = $this->filter($parties, $ppiFilter, $ppeuFilter);
-        $parties = $this->sort($parties, $linkText);
+        if ($linkText) {
+            $parties = $this->sort($parties, $linkText);
+        }
 
         return $parties;
     }
@@ -62,10 +64,15 @@ class PartyRepository {
                 });
                 break;
             case 'en': default:
-            usort($parties, function($a, $b) {
-                return strcmp($a->name->en, $b->name->en);
-            });
-            break;
+                usort($parties, function($a, $b) {
+                    return strcmp($a->name->en, $b->name->en);
+                });
+                break;
+            case 'nameLength':
+                usort($parties, function($a, $b) {
+                    return strcmp(strlen($a->name->en), strlen($b->name->en));
+                });
+                break;
         }
         return $parties;
     }

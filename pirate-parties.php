@@ -13,7 +13,8 @@
 */
 
 // todo: move to folder "controler"
-include_once(plugin_dir_path(__FILE__) . 'Wp_Pirate_Parties_Widget.php');
+include_once(plugin_dir_path(__FILE__) . 'Wp_Pirate_Parties_List_Widget.php');
+include_once(plugin_dir_path(__FILE__) . 'Wp_Pirate_Parties_Weekly_Widget.php');
 include_once(plugin_dir_path(__FILE__) . 'shortcode.php');
 
 /**

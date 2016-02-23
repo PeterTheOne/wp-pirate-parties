@@ -5,13 +5,13 @@ include_once(plugin_dir_path(__FILE__) . 'model/partyRepository.php');
 /**
  * Class Wp_Pirate_Parties
  */
-class Wp_Pirate_Parties_Widget extends WP_Widget {
+class Wp_Pirate_Parties_List_Widget extends WP_Widget {
     private $linkTexts = [];
 
     private $links = [];
 
-    function Wp_Pirate_Parties_Widget() {
-        parent::__construct(false, $name = __('Wp Pirate Parties', 'wp-pirate-parties'));
+    function Wp_Pirate_Parties_List_Widget() {
+        parent::__construct(false, $name = __('Pirate Parties List', 'wp-pirate-parties'));
 
         $this->linkTexts = array(
             'en' => __('Party name in english', 'wp-pirate-parties'),
@@ -66,7 +66,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         }
 
         ob_start();
-        include(plugin_dir_path(__FILE__) . 'view/widgetForm.php');
+        include(plugin_dir_path(__FILE__) . 'view/listWidgetForm.php');
         $output = ob_get_clean();
         echo $output;
 
@@ -119,7 +119,7 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
         $parties = $partyRepository->getParties($ppiFilter, $ppeuFilter, $linkText);
 
         ob_start();
-        include(plugin_dir_path(__FILE__) . 'view/widget.php');
+        include(plugin_dir_path(__FILE__) . 'view/listWidget.php');
         $output = ob_get_clean();
         echo $output;
     }
@@ -128,5 +128,5 @@ class Wp_Pirate_Parties_Widget extends WP_Widget {
 
 // register widget
 add_action('widgets_init', function() {
-    register_widget('Wp_Pirate_Parties_Widget');
+    register_widget('Wp_Pirate_Parties_List_Widget');
 });
